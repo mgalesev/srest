@@ -1,0 +1,4 @@
+services:
+    paper.manager:
+        class: AppBundle\Service\PaperManager
+        arguments: ["@doctrine.orm.entity_manager"]
