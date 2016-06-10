@@ -28,6 +28,8 @@ class AppKernel extends Kernel
 
             // Srest
             new AppBundle\AppBundle(),
+            new SoulDock\PaperBundle\SoulDockPaperBundle(),
+            new SoulDock\WebBundle\SoulDockWebBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

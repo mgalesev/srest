@@ -1,16 +1,19 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace SoulDock\PaperBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * PaperType
  *
  * @ORM\Table(name="paper_type")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PaperTypeRepository")
+ * @ORM\Entity(repositoryClass="SoulDock\PaperBundle\Repository\PaperTypeRepository")
+ * @UniqueEntity("name")
  */
 class PaperType
 {
@@ -31,6 +34,8 @@ class PaperType
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      */
     private $name;
@@ -45,7 +50,7 @@ class PaperType
     /**
      * @var Paper[]
      *
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Paper", mappedBy="type")
+     * @ORM\OneToMany(targetEntity="SoulDock\PaperBundle\Entity\Paper", mappedBy="type")
      */
     private $papers;
 

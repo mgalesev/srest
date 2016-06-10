@@ -1,0 +1,9 @@
+services:
+    paper_type.manager:
+        class: SoulDock\PaperBundle\Service\SoulDockBaseEntityManager
+        arguments: ["@doctrine.orm.entity_manager", 'SoulDockPaperBundle:PaperType']
+
+    paper.manager:
+        class: SoulDock\PaperBundle\Service\SoulDockBaseEntityManager
+        arguments: ["@doctrine.orm.entity_manager", 'SoulDockPaperBundle:Paper']
+

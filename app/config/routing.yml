@@ -1,13 +1,8 @@
-soul_dock_user:
-    resource: "@SoulDockUserBundle/Resources/config/routing.xml"
+soul_dock_web:
+    resource: "@SoulDockWebBundle/Resources/config/routing.yml"
     prefix:   /
 
-user:
-    resource: "@UserBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-app_rest:
+soul_dock_paper:
     type: rest
     prefix: /api
-    resource: "@AppBundle/Resources/config/routing.yml"
+    resource: "@SoulDockPaperBundle/Resources/config/routing.yml"

@@ -1,15 +1,16 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace SoulDock\PaperBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Paper
  *
  * @ORM\Table(name="paper")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\PaperRepository")
+ * @ORM\Entity(repositoryClass="SoulDock\PaperBundle\Repository\PaperRepository")
  */
 class Paper
 {
@@ -44,7 +45,7 @@ class Paper
     /**
      * @var PaperType
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PaperType", inversedBy="papers")
+     * @ORM\ManyToOne(targetEntity="SoulDock\PaperBundle\Entity\PaperType", inversedBy="papers")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $type;

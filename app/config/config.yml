@@ -2,7 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
-    - { resource: "@UserBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -80,3 +79,22 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+fos_rest:
+    routing_loader:
+        default_format: json
+    body_converter:
+        enabled: true
+    body_listener:
+        decoders:
+            json: fos_rest.decoder.json
+            xml: fos_rest.decoder.xml
+    format_listener:
+        enabled: true
+        rules:
+            - { path: '^/', priorities: ['json', 'xml'], fallback_format: 'html' }
+    serializer:
+        serialize_null: true
+    view:
+        view_response_listener: 'force'
+    param_fetcher_listener: 'force'

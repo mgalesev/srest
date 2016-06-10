@@ -1,0 +1,3 @@
+soul_dock_web_homepage:
+    path:     /
+    defaults: { _controller: SoulDockWebBundle:Default:index }

@@ -1,0 +1,11 @@
+app_rest_paper:
+    type: rest
+    prefix: /v1
+    resource: "@SoulDockPaperBundle/Controller/PaperController.php"
+    name_prefix:  api_1_
+
+app_rest_paper_type:
+    type: rest
+    prefix: /v1
+    resource: "@SoulDockPaperBundle/Controller/PaperTypeController.php"
+    name_prefix:  api_1_
