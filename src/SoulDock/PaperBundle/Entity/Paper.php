@@ -31,6 +31,8 @@ class Paper
     /**
      * @var string
      *
+     * @Assert\NotBlank()
+     *
      * @ORM\Column(name="title", type="string", length=255)
      */
     private $title;
@@ -44,6 +46,8 @@ class Paper
 
     /**
      * @var PaperType
+     *
+     * @Assert\NotBlank()
      *
      * @ORM\ManyToOne(targetEntity="SoulDock\PaperBundle\Entity\PaperType", inversedBy="papers")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="CASCADE")

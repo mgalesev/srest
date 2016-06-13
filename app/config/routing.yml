@@ -6,3 +6,7 @@ soul_dock_paper:
     type: rest
     prefix: /api
     resource: "@SoulDockPaperBundle/Resources/config/routing.yml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc

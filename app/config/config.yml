@@ -98,3 +98,17 @@ fos_rest:
     view:
         view_response_listener: 'force'
     param_fetcher_listener: 'force'
+
+nelmio_api_doc:
+    sandbox:
+        enabled:  true
+        endpoint: http://srest.com
+        accept_type: application/json
+        body_format:
+            formats: [ form, json ]
+        request_format:
+            formats:
+                json: application/json
+                xml: application/xml
+            method: format_param
+        entity_to_choice: false

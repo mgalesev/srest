@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * PaperType
@@ -49,6 +50,8 @@ class PaperType
 
     /**
      * @var Paper[]
+     *
+     * @Exclude
      *
      * @ORM\OneToMany(targetEntity="SoulDock\PaperBundle\Entity\Paper", mappedBy="type")
      */

@@ -23,6 +23,9 @@ class AppKernel extends Kernel
             // FOS
             new FOS\RestBundle\FOSRestBundle(),
 
+            // Nelmio
+            new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
             // Stof
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 

@@ -27,7 +27,6 @@ class PaperTypeType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'SoulDock\PaperBundle\Entity\PaperType',
-            'csrf_protection' => false,
         ));
     }
 }
