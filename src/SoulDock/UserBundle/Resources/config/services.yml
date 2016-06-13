@@ -1,0 +1,4 @@
+services:
+#    soul_dock_user.example:
+#        class: SoulDock\UserBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

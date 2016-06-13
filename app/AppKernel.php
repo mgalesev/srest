@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new JMS\SerializerBundle\JMSSerializerBundle(),
 
             // FOS
+            new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
 
             // Nelmio
@@ -33,6 +34,7 @@ class AppKernel extends Kernel
             new AppBundle\AppBundle(),
             new SoulDock\PaperBundle\SoulDockPaperBundle(),
             new SoulDock\WebBundle\SoulDockWebBundle(),
+            new SoulDock\UserBundle\SoulDockUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

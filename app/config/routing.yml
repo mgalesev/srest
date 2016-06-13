@@ -1,3 +1,7 @@
+soul_dock_user:
+    resource: "@SoulDockUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
 soul_dock_web:
     resource: "@SoulDockWebBundle/Resources/config/routing.yml"
     prefix:   /
