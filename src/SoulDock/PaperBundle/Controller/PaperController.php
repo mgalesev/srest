@@ -106,7 +106,7 @@ class PaperController extends BaseRestController
             PaperType::class,
             $entity,
             $request,
-            'POST'
+            Request::METHOD_POST
         );
     }
 
@@ -142,7 +142,7 @@ class PaperController extends BaseRestController
             PaperType::class,
             $entity,
             $request,
-            'PUT'
+            Request::METHOD_PUT
         );
     }
 
@@ -177,7 +177,7 @@ class PaperController extends BaseRestController
             PaperType::class,
             $entity,
             $request,
-            'PATCH'
+            Request::METHOD_PATCH
         );
     }
 

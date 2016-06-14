@@ -25,6 +25,13 @@ class DefaultController extends Controller
 //            dump($form->getErrors(true,false));die;
 //        }
 
+        $clientManager = $this->get('fos_oauth_server.client_manager.default');
+        $client = $clientManager->createClient();
+        $client->setRedirectUris(array('http://www.example.com'));
+        $client->setAllowedGrantTypes(array('token', 'authorization_code', 'password'));
+        $clientManager->updateClient($client);
+
+
         return $this->render('SoulDockWebBundle:Default:index.html.twig', array(
             'form' => $form->createView(),
         ));

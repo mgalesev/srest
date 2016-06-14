@@ -107,7 +107,7 @@ class PaperTypeController extends BaseRestController
             PaperTypeType::class,
             $entity,
             $request,
-            'POST'
+            Request::METHOD_POST
         );
     }
 
@@ -143,7 +143,7 @@ class PaperTypeController extends BaseRestController
             PaperTypeType::class,
             $entity,
             $request,
-            'PUT'
+            Request::METHOD_PUT
         );
     }
 
@@ -178,7 +178,7 @@ class PaperTypeController extends BaseRestController
             PaperTypeType::class,
             $entity,
             $request,
-            'PATCH'
+            Request::METHOD_PATCH
         );
     }
 
@@ -198,7 +198,6 @@ class PaperTypeController extends BaseRestController
      *     }
      * )
      *
-     * @param Request $request The request object
      * @param int     $id      The paper type id
      *
      * @return View

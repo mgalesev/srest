@@ -85,6 +85,15 @@ fos_user:
     firewall_name: main
     user_class: SoulDock\UserBundle\Entity\User
 
+fos_oauth_server:
+    db_driver: orm
+    client_class:        SoulDock\RestBundle\Entity\Client
+    access_token_class:  SoulDock\RestBundle\Entity\AccessToken
+    refresh_token_class: SoulDock\RestBundle\Entity\RefreshToken
+    auth_code_class:     SoulDock\RestBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_provider.username
+
 fos_rest:
     routing_loader:
         default_format: json
@@ -97,7 +106,7 @@ fos_rest:
     format_listener:
         enabled: true
         rules:
-            - { path: '^/', priorities: ['json', 'xml'], fallback_format: 'html' }
+            - { path: '^/', priorities: ['json', 'xml', 'html'], fallback_format: 'html' }
     serializer:
         serialize_null: true
     view:
@@ -106,6 +115,9 @@ fos_rest:
 
 nelmio_api_doc:
     sandbox:
+        authentication:
+            delivery: http
+            type:     bearer
         enabled:  true
         endpoint: http://srest.com
         accept_type: application/json

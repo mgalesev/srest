@@ -115,7 +115,7 @@ abstract class BaseRestController extends FOSRestController
             $data = $form->getData();
             $this->getManager()->save($data);
 
-            if ($method == 'POST') {
+            if ($method == Request::METHOD_POST) {
                 return $this->created($data);
             }
             else {

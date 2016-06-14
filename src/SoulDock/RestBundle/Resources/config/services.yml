@@ -1,0 +1,4 @@
+services:
+#    soul_dock_rest.example:
+#        class: SoulDock\RestBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

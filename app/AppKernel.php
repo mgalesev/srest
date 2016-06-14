@@ -23,6 +23,7 @@ class AppKernel extends Kernel
             // FOS
             new FOS\UserBundle\FOSUserBundle(),
             new FOS\RestBundle\FOSRestBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
 
             // Nelmio
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
@@ -35,6 +36,7 @@ class AppKernel extends Kernel
             new SoulDock\PaperBundle\SoulDockPaperBundle(),
             new SoulDock\WebBundle\SoulDockWebBundle(),
             new SoulDock\UserBundle\SoulDockUserBundle(),
+            new SoulDock\RestBundle\SoulDockRestBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

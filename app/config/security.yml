@@ -11,17 +11,20 @@ security:
             id: fos_user.user_provider.username
 
     firewalls:
-        main:
-            pattern: ^/
-            form_login:
-                provider: fos_userbundle
-                csrf_token_generator: security.csrf.token_manager
+        oauth_token:
+            pattern:    ^/oauth/v2/token
+            security:   false
 
-            logout:       true
-            anonymous:    true
+        oauth_authorize:
+            pattern:    ^/oauth/v2/auth
+            provider:   fos_userbundle
+            http_basic: true
+
+        api:
+            pattern:    ^/api/v1
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  false
 
     access_control:
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin/, role: ROLE_ADMIN }
+        - { path: ^/api/v1, roles: [ IS_AUTHENTICATED_FULLY ] }
