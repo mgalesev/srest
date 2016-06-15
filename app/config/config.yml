@@ -129,3 +129,10 @@ nelmio_api_doc:
                 xml: application/xml
             method: format_param
         entity_to_choice: false
+
+hautelook_alice:
+    db_drivers:
+        orm: ~
+    locale: en_US
+    seed: 1
+    persist_once: false
