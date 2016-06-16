@@ -14,8 +14,14 @@ class AppKernel extends Kernel
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
             new Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle(),
-            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
+            // Doctrine
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
+
+            // Stof
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             // JMS
             new JMS\SerializerBundle\JMSSerializerBundle(),
@@ -27,9 +33,6 @@ class AppKernel extends Kernel
 
             // Nelmio
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
-
-            // Stof
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
 
             // Srest
             new AppBundle\AppBundle(),

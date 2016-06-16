@@ -7,14 +7,18 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-use JMS\Serializer\Annotation\Exclude;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * PaperType
  *
  * @ORM\Table(name="paper_type")
  * @ORM\Entity(repositoryClass="SoulDock\PaperBundle\Repository\PaperTypeRepository")
+ *
  * @UniqueEntity("name")
+ *
+ * @ExclusionPolicy("all")
  */
 class PaperType
 {
@@ -29,6 +33,8 @@ class PaperType
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
     private $id;
 
@@ -38,6 +44,8 @@ class PaperType
      * @Assert\NotBlank()
      *
      * @ORM\Column(name="name", type="string", length=255, unique=true)
+     *
+     * @Expose
      */
     private $name;
 
@@ -45,13 +53,13 @@ class PaperType
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
+     *
+     * @Expose
      */
     private $description;
 
     /**
      * @var Paper[]
-     *
-     * @Exclude
      *
      * @ORM\OneToMany(targetEntity="SoulDock\PaperBundle\Entity\Paper", mappedBy="type")
      */

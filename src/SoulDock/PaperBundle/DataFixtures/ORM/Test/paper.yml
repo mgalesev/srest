@@ -1,5 +1,5 @@
 SoulDock\PaperBundle\Entity\Paper:
-    paper_{1..10}:
-        title: <sentence()>
-        body: <text()>
-        type: '@paper_type*'
+    paper_1:
+        title: First Test Paper
+        body: First Test Paper Body
+        type: '@paper_type_1'

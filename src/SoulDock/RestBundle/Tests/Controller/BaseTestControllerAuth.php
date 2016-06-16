@@ -2,22 +2,13 @@
 
 namespace SoulDock\RestBundle\Tests\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-
 /**
  * Class BaseTestControllerAuth
  *
  * @package SoulDock\RestBundle\Tests\Controller
  */
-class BaseTestControllerAuth extends WebTestCase
+abstract class BaseTestControllerAuth extends BaseTestController
 {
-    /**
-     * Base url for resource.
-     *
-     * @var string
-     */
-    protected $baseUrl;
-
     /**
      * Test if list page retruns response 401.
      */
@@ -25,7 +16,7 @@ class BaseTestControllerAuth extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', $this->baseUrl);
+        $client->request('GET', $this->getBaseUrl());
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
@@ -37,7 +28,7 @@ class BaseTestControllerAuth extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('POST', $this->baseUrl);
+        $client->request('POST', $this->getBaseUrl());
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
@@ -49,7 +40,7 @@ class BaseTestControllerAuth extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('GET', $this->baseUrl . '/1');
+        $client->request('GET', $this->getBaseUrl() . '/1');
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
@@ -61,7 +52,7 @@ class BaseTestControllerAuth extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('PUT', $this->baseUrl . '/1');
+        $client->request('PUT', $this->getBaseUrl() . '/1');
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
@@ -73,7 +64,7 @@ class BaseTestControllerAuth extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('PATCH', $this->baseUrl . '/1');
+        $client->request('PATCH', $this->getBaseUrl() . '/1');
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
     }
@@ -85,8 +76,23 @@ class BaseTestControllerAuth extends WebTestCase
     {
         $client = static::createClient();
 
-        $client->request('DELETE', $this->baseUrl . '/1');
+        $client->request('DELETE', $this->getBaseUrl() . '/1');
 
         $this->assertEquals(401, $client->getResponse()->getStatusCode());
+    }
+
+    /**
+     * Get authenticated client
+     *
+     * @return \Symfony\Bundle\FrameworkBundle\Client
+     */
+    protected function getClient()
+    {
+        $client = static::createClient(array(), array(
+            'PHP_AUTH_USER' => 'admin',
+            'PHP_AUTH_PW'   => 'xxxx',
+        ));
+
+        return $client;
     }
 }

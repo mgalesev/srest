@@ -1,4 +1,4 @@
 SoulDock\PaperBundle\Entity\PaperType:
-    paper_type_{1..10}:
-        name: <word()>
-        description: <paragraph()>
+    paper_type_1:
+        name: Paper Type One
+        description: Paper Type One Description

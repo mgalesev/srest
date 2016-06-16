@@ -24,3 +24,8 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+security:
+    firewalls:
+        api:
+            http_basic: ~

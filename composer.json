@@ -35,7 +35,8 @@
         "friendsofsymfony/user-bundle": "~2.0@dev",
         "friendsofsymfony/oauth-server-bundle": "^1.5",
         "phpunit/php-code-coverage": "^4.0",
-        "phpunit/phpunit": "^5.4"
+        "phpunit/phpunit": "^5.4",
+        "doctrine/doctrine-migrations-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

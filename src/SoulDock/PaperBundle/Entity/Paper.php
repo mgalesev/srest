@@ -5,12 +5,16 @@ namespace SoulDock\PaperBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * Paper
  *
  * @ORM\Table(name="paper")
  * @ORM\Entity(repositoryClass="SoulDock\PaperBundle\Repository\PaperRepository")
+ *
+ * @ExclusionPolicy("all")
  */
 class Paper
 {
@@ -25,6 +29,8 @@ class Paper
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     *
+     * @Expose
      */
     private $id;
 
@@ -34,6 +40,8 @@ class Paper
      * @Assert\NotBlank()
      *
      * @ORM\Column(name="title", type="string", length=255)
+     *
+     * @Expose
      */
     private $title;
 
@@ -41,6 +49,8 @@ class Paper
      * @var string
      *
      * @ORM\Column(name="body", type="text", nullable=true)
+     *
+     * @Expose
      */
     private $body;
 
@@ -51,6 +61,8 @@ class Paper
      *
      * @ORM\ManyToOne(targetEntity="SoulDock\PaperBundle\Entity\PaperType", inversedBy="papers")
      * @ORM\JoinColumn(name="type_id", referencedColumnName="id", onDelete="CASCADE")
+     *
+     * @Expose
      */
     private $type;
 

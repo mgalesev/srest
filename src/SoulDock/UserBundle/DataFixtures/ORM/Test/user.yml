@@ -1,0 +1,6 @@
+SoulDock\UserBundle\Entity\User:
+    user_1:
+        username: 'admin'
+        email: 'admin@souldock.com'
+        plainPassword: 'xxxx'
+        enabled: true

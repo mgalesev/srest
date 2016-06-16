@@ -2,6 +2,7 @@
 
 namespace SoulDock\PaperBundle\Controller;
 
+use SoulDock\RestBundle\Controller\BaseRestController;
 use FOS\RestBundle\Controller\Annotations;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\RestBundle\Request\ParamFetcherInterface;
@@ -46,9 +47,7 @@ class PaperController extends BaseRestController
         $limit = $paramFetcher->get('limit');
         $offset = $paramFetcher->get('offset');
 
-        $data = $this->getManager()->findAll(array(), array(), $limit, $offset);
-
-        return $this->ok($data);
+        return $this->getAllAction([], [], $limit, $offset);
     }
 
     /**
@@ -74,9 +73,7 @@ class PaperController extends BaseRestController
      */
     public function getPaperAction($id)
     {
-        $data = $this->findOr404($id);
-
-        return $this->ok($data);
+        return $this->getAction($id);
     }
 
     /**
@@ -100,14 +97,7 @@ class PaperController extends BaseRestController
      */
     public function postPaperAction(Request $request)
     {
-        $entity = $this->getManager()->createNew();
-
-        return $this->handleForm(
-            PaperType::class,
-            $entity,
-            $request,
-            Request::METHOD_POST
-        );
+        return $this->postAction($request);
     }
 
     /**
@@ -136,14 +126,7 @@ class PaperController extends BaseRestController
      */
     public function putPaperAction(Request $request, $id)
     {
-        $entity = $this->findOr404($id);
-
-        return $this->handleForm(
-            PaperType::class,
-            $entity,
-            $request,
-            Request::METHOD_PUT
-        );
+        return $this->putAction($request, $id);
     }
 
     /**
@@ -171,14 +154,7 @@ class PaperController extends BaseRestController
      */
     public function patchPaperAction(Request $request, $id)
     {
-        $entity = $this->findOr404($id);
-
-        return $this->handleForm(
-            PaperType::class,
-            $entity,
-            $request,
-            Request::METHOD_PATCH
-        );
+        return $this->patchAction($request, $id);
     }
 
     /**
@@ -203,18 +179,23 @@ class PaperController extends BaseRestController
      */
     public function deletePaperAction($id)
     {
-        $entity = $this->findOr404($id);
-
-        $this->getManager()->delete($entity);
-
-        return $this->ok(null);
+        return $this->deleteAction($id);
     }
 
     /**
      * { @inheritdoc }
      */
-    protected function getManager()
+    protected function getEntityManager()
     {
         return $this->get('paper.manager');
+    }
+
+
+    /**
+     * { @inheritdoc }
+     */
+    protected function getFormClass()
+    {
+        return PaperType::class;
     }
 }
