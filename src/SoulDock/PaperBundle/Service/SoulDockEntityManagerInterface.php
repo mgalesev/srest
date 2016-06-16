@@ -39,6 +39,15 @@ interface SoulDockEntityManagerInterface
     public function findAll($filter, $order, $limit, $offset);
 
     /**
+     * Search entites by given criterias.
+     *
+     * @param array $filter
+     *
+     * @return mixed
+     */
+    public function count($filter);
+
+    /**
      * Save entity.
      *
      * @param object $entity

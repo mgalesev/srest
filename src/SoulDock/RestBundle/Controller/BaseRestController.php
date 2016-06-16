@@ -44,8 +44,12 @@ abstract class BaseRestController extends FOSRestController
     protected function getAllAction($filter, $order, $limit, $offset)
     {
         $data = $this->getEntityManager()->findAll($filter, $order, $limit, $offset);
+        $total = $this->getEntityManager()->count($filter);
 
-        return $this->ok($data);
+        $view = $this->ok($data);
+        $view->setHeader('X-Total-Count', $total);
+
+        return $view;
     }
 
     /**

@@ -89,6 +89,36 @@ class SoulDockBaseEntityManager implements SoulDockEntityManagerInterface
     }
 
     /**
+     * Search entites by given criterias.
+     *
+     * @param array $filter
+     *
+     * @return mixed
+     */
+    public function count($filter)
+    {
+        $qb = $this->em
+            ->getRepository($this->class)
+            ->createQueryBuilder('c');
+
+        $qb->select('count(c.id)');
+
+        foreach ($filter as $key=>$value) {
+            if (is_array($value)) {
+                $qb->andWhere('c.' . $key . 'IN (:' . $key . ')');
+            }
+            else {
+                $qb->andWhere('c.' . $key . '=:' . $key);
+            }
+
+            $qb->setParameter($key, $value);
+        }
+
+        return $qb->getQuery()->getSingleScalarResult();
+
+    }
+
+    /**
      * Save entity.
      *
      * @param object $entity Entity to save

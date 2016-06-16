@@ -5,7 +5,6 @@ namespace SoulDock\PaperBundle\Controller;
 use SoulDock\RestBundle\Controller\BaseRestController;
 use FOS\RestBundle\Controller\Annotations;
 use Symfony\Component\HttpFoundation\Request;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
 use SoulDock\PaperBundle\Form\PaperType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
@@ -30,7 +29,7 @@ class PaperController extends BaseRestController
      *      {"name"="limit", "dataType"="integer", "requirement"="\d+", "description"="the max number of records to return"}
      *  },
      *  parameters={
-     *      {"name"="limit", "dataType"="integer", "required"=true, "description"="the max number of records to return"},
+     *      {"name"="limit", "dataType"="integer", "required"=false, "description"="the max number of records to return"},
      *      {"name"="offset", "dataType"="integer", "required"=false, "description"="the record number to start results at"}
      *  }
      * )
@@ -38,15 +37,13 @@ class PaperController extends BaseRestController
      * @QueryParam(name="limit", requirements="\d+", default="10", description="our limit")
      * @QueryParam(name="offset", requirements="\d+", nullable=true, default="0", description="our offset")
      *
-     * @param ParamFetcherInterface $paramFetcher
+     * @param int $limit  Number of entities returned
+     * @param int $offset Start form this entity number
      *
      * @return View
      */
-    public function getPapersAction(ParamFetcherInterface $paramFetcher)
+    public function getPapersAction($limit, $offset)
     {
-        $limit = $paramFetcher->get('limit');
-        $offset = $paramFetcher->get('offset');
-
         return $this->getAllAction([], [], $limit, $offset);
     }
 

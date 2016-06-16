@@ -6,7 +6,6 @@ use SoulDock\RestBundle\Controller\BaseRestController;
 use FOS\RestBundle\Controller\Annotations;
 use Symfony\Component\HttpFoundation\Request;
 use SoulDock\PaperBundle\Form\PaperTypeType;
-use FOS\RestBundle\Request\ParamFetcherInterface;
 use FOS\RestBundle\View\View;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -38,16 +37,13 @@ class PaperTypeController extends BaseRestController
      * @QueryParam(name="limit", requirements="\d+", default="10", description="our limit")
      * @QueryParam(name="offset", requirements="\d+", nullable=true, default="0", description="our offset")
      *
-     * @param Request               $request
-     * @param ParamFetcherInterface $paramFetcher
+     * @param int $limit  Number of entities returned
+     * @param int $offset Start form this entity number
      *
      * @return View
      */
-    public function getPapertypesAction(Request $request, ParamFetcherInterface $paramFetcher)
+    public function getPapertypesAction($limit, $offset)
     {
-        $limit = $paramFetcher->get('limit');
-        $offset = $paramFetcher->get('offset');
-
         return $this->getAllAction([], [], $limit, $offset);
     }
 
