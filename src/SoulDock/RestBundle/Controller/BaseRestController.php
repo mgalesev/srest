@@ -34,20 +34,24 @@ abstract class BaseRestController extends FOSRestController
     /**
      * Find all entity data by given criterias.
      *
-     * @param array $filter List of filters to filter by
-     * @param array $order  List of sort=>direction pairs to order by
-     * @param int   $limit  Number of results to return
-     * @param int   $offset Number to start from
+     * @param array $filter     List of filters to filter by
+     * @param array $order      List of sort=>direction pairs to order by
+     * @param int   $limit      Number of results to return
+     * @param int   $offset     Number to start from
+     * @param bool  $totalCount Show total count in response headers
      *
      * @return View
      */
-    protected function getAllAction($filter, $order, $limit, $offset)
+    protected function getAllAction($filter, $order, $limit, $offset, $totalCount=true)
     {
         $data = $this->getEntityManager()->findAll($filter, $order, $limit, $offset);
         $total = $this->getEntityManager()->count($filter);
 
         $view = $this->ok($data);
-        $view->setHeader('X-Total-Count', $total);
+
+        if ($totalCount) {
+            $view->setHeader('X-Total-Count', $total);
+        }
 
         return $view;
     }
