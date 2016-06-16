@@ -35,7 +35,6 @@ class AppKernel extends Kernel
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
             // Srest
-            new AppBundle\AppBundle(),
             new SoulDock\PaperBundle\SoulDockPaperBundle(),
             new SoulDock\WebBundle\SoulDockWebBundle(),
             new SoulDock\UserBundle\SoulDockUserBundle(),
