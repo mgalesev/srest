@@ -1,0 +1,4 @@
+SoulDock\RestBundle\Entity\Client:
+    user_1:
+        redirectUris: ['http://srest.com']
+        allowedGrantTypes: ['token', 'authorization_code', 'password']
