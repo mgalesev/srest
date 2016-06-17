@@ -9,8 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class PaperTypeType extends AbstractType
 {
     /**
-     * @param FormBuilderInterface $builder
-     * @param array $options
+     * { @inheritdoc }
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -19,14 +18,22 @@ class PaperTypeType extends AbstractType
             ->add('description')
         ;
     }
-    
+
     /**
-     * @param OptionsResolver $resolver
+     * { @inheritdoc }
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'SoulDock\PaperBundle\Entity\PaperType',
         ));
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    public function getBlockPrefix()
+    {
+        return '';
     }
 }

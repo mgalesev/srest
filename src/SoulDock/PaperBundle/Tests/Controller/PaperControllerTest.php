@@ -57,7 +57,7 @@ class PaperControllerTest extends BaseTestControllerAuth
     public function postRequestProvider()
     {
         return [
-            ['{"paper":{"title":"Test 1 Paper Title","body":"Test 1 Paper Body","type":1}}', '{"id":4,"title":"Test 1 Paper Title","body":"Test 1 Paper Body","type":{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}}']
+            ['{"title":"Test 1 Paper Title","body":"Test 1 Paper Body","type":1}', '{"id":4,"title":"Test 1 Paper Title","body":"Test 1 Paper Body","type":{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}}']
         ];
     }
 
@@ -67,7 +67,7 @@ class PaperControllerTest extends BaseTestControllerAuth
     public function putRequestProvider()
     {
         return [
-            [3, '{"paper":{"title":"Test 1 Paper Title Updated","body":"Test 1 Paper Body","type":1}}', '{"id":3,"title":"Test 1 Paper Title Updated","body":"Test 1 Paper Body","type":{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}}']
+            [3, '{"title":"Test 1 Paper Title Updated","body":"Test 1 Paper Body","type":1}', '{"id":3,"title":"Test 1 Paper Title Updated","body":"Test 1 Paper Body","type":{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}}']
         ];
     }
 
@@ -77,7 +77,7 @@ class PaperControllerTest extends BaseTestControllerAuth
     public function patchRequestProvider()
     {
         return [
-            [3, '{"paper":{"title":"Test 1 Paper Title Changed","body":"Test 1 Paper Body","type":1}}', '{"id":3,"title":"Test 1 Paper Title Changed","body":"Test 1 Paper Body","type":{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}}']
+            [3, '{"title":"Test 1 Paper Title Changed","body":"Test 1 Paper Body","type":1}', '{"id":3,"title":"Test 1 Paper Title Changed","body":"Test 1 Paper Body","type":{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}}']
         ];
     }
 

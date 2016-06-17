@@ -57,7 +57,7 @@ class PaperTypeControllerTest extends BaseTestControllerAuth
     public function postRequestProvider()
     {
         return [
-            ['{"paper_type":{"name":"Forth Paper Type", "description":"Forth Paper Type description"}}', '{"id":4,"name":"Forth Paper Type","description":"Forth Paper Type description"}']
+            ['{"name":"Forth Paper Type", "description":"Forth Paper Type description"}', '{"id":4,"name":"Forth Paper Type","description":"Forth Paper Type description"}']
         ];
     }
 
@@ -67,7 +67,7 @@ class PaperTypeControllerTest extends BaseTestControllerAuth
     public function putRequestProvider()
     {
         return [
-            [3, '{"paper_type":{"name":"Forth Paper Type Updated", "description":"Forth Paper Type description"}}', '{"id":3,"name":"Forth Paper Type Updated","description":"Forth Paper Type description"}']
+            [3, '{"name":"Forth Paper Type Updated", "description":"Forth Paper Type description"}', '{"id":3,"name":"Forth Paper Type Updated","description":"Forth Paper Type description"}']
         ];
     }
 
@@ -77,7 +77,7 @@ class PaperTypeControllerTest extends BaseTestControllerAuth
     public function patchRequestProvider()
     {
         return [
-            [3, '{"paper_type":{"name":"Forth Paper Type Changed", "description":"Forth Paper Type description"}}', '{"id":3,"name":"Forth Paper Type Changed","description":"Forth Paper Type description"}']
+            [3, '{"name":"Forth Paper Type Changed", "description":"Forth Paper Type description"}', '{"id":3,"name":"Forth Paper Type Changed","description":"Forth Paper Type description"}']
         ];
     }
 
