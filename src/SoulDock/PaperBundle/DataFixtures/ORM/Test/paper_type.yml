@@ -2,3 +2,9 @@ SoulDock\PaperBundle\Entity\PaperType:
     paper_type_1:
         name: Paper Type One
         description: Paper Type One Description
+    paper_type_2:
+        name: Paper Type Two
+        description: Paper Type Two Description
+    paper_type_3:
+            name: Paper Type Three
+            description: Paper Type Three Description

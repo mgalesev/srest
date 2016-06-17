@@ -3,3 +3,11 @@ SoulDock\PaperBundle\Entity\Paper:
         title: First Test Paper
         body: First Test Paper Body
         type: '@paper_type_1'
+    paper_2:
+        title: Second Test Paper
+        body: Second Test Paper Body
+        type: '@paper_type_2'
+    paper_3:
+        title: Third Test Paper
+        body: Third Test Paper Body
+        type: '@paper_type_2'

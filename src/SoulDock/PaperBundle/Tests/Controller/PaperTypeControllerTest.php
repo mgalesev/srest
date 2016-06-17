@@ -2,19 +2,23 @@
 
 namespace SoulDock\PaperBundle\Tests\Controller;
 
-use SoulDock\RestBundle\Tests\Controller\BaseTestControllerAuthJson;
+use SoulDock\RestBundle\Tests\Controller\BaseTestControllerAuth;
 
 /**
  * Class PaperTypeControllerTest
  *
+ * @group web
+ * @group rest
+ * @group paper
+ *
  * @package SoulDock\PaperBundle\Tests\Controller
  */
-class PaperTypeControllerTest extends BaseTestControllerAuthJson
+class PaperTypeControllerTest extends BaseTestControllerAuth
 {
     /**
      * { @inheritdoc }
      */
-    protected function getBaseUrl()
+    public function getBaseUrl()
     {
         return '/api/v1/papertypes';
     }
@@ -22,20 +26,68 @@ class PaperTypeControllerTest extends BaseTestControllerAuthJson
     /**
      * { @inheritdoc }
      */
-    public function postJsonRequestProvider()
+    public function getFormat()
+    {
+        return 'json';
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    public function getAllRequestProvider()
     {
         return [
-            ['{"paper_type":{"name":"First Paper Type", "description":"First Paper Type description"}}', '{"id":2,"name":"First Paper Type","description":"First Paper Type description"}']
+            [null, '[{"id":1,"name":"Paper Type One","description":"Paper Type One Description"},{"id":2,"name":"Paper Type Two","description":"Paper Type Two Description"},{"id":3,"name":"Paper Type Three","description":"Paper Type Three Description"}]']
         ];
     }
 
     /**
      * { @inheritdoc }
      */
-    public function putJsonRequestProvider()
+    public function getRequestProvider()
     {
         return [
-            [2, '{"paper_type":{"name":"First Paper Type Updated", "description":"First Paper Type description"}}', '{"id":2,"name":"First Paper Type Updated","description":"First Paper Type description"}']
+            [1, null, '{"id":1,"name":"Paper Type One","description":"Paper Type One Description"}']
+        ];
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    public function postRequestProvider()
+    {
+        return [
+            ['{"paper_type":{"name":"Forth Paper Type", "description":"Forth Paper Type description"}}', '{"id":4,"name":"Forth Paper Type","description":"Forth Paper Type description"}']
+        ];
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    public function putRequestProvider()
+    {
+        return [
+            [3, '{"paper_type":{"name":"Forth Paper Type Updated", "description":"Forth Paper Type description"}}', '{"id":3,"name":"Forth Paper Type Updated","description":"Forth Paper Type description"}']
+        ];
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    public function patchRequestProvider()
+    {
+        return [
+            [3, '{"paper_type":{"name":"Forth Paper Type Changed", "description":"Forth Paper Type description"}}', '{"id":3,"name":"Forth Paper Type Changed","description":"Forth Paper Type description"}']
+        ];
+    }
+
+    /**
+     * { @inheritdoc }
+     */
+    public function deleteRequestProvider()
+    {
+        return [
+            [3, '', '']
         ];
     }
 }

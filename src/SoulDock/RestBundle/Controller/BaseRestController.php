@@ -150,7 +150,7 @@ abstract class BaseRestController extends FOSRestController
 
         $this->getEntityManager()->delete($entity);
 
-        return $this->ok(null);
+        return $this->noContent();
     }
 
     /**
@@ -163,6 +163,16 @@ abstract class BaseRestController extends FOSRestController
     protected function ok($data)
     {
         return $this->view($data, Codes::HTTP_OK);
+    }
+
+    /**
+     * Return 204
+     *
+     * @return View
+     */
+    protected function noContent()
+    {
+        return $this->view();
     }
 
     /**
