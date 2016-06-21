@@ -3,8 +3,9 @@ soul_dock_rest:
     prefix:   /
 
 soul_dock_user:
+    type: rest
+    prefix: /api
     resource: "@SoulDockUserBundle/Resources/config/routing.yml"
-    prefix:   /
 
 soul_dock_web:
     resource: "@SoulDockWebBundle/Resources/config/routing.yml"

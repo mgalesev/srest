@@ -20,6 +20,12 @@ security:
             provider:   fos_userbundle
             http_basic: true
 
+        sd_auth:
+            pattern:    ^/api/v1/users
+            security:  false
+            methods: [POST]
+            anonymous: true
+
         api:
             pattern:    ^/api/v1
             fos_oauth:  true
@@ -28,3 +34,4 @@ security:
 
     access_control:
         - { path: ^/api/v1, roles: [ IS_AUTHENTICATED_FULLY ] }
+        - { path: ^/api/v1/users, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }

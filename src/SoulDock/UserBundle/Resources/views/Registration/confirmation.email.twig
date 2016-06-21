@@ -1,0 +1,23 @@
+{% extends '@SoulDockUser/layout.email.twig' %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block subject %}
+    {% autoescape false %}
+        {{ 'registration.email.subject'|trans({'%username%': user.username, '%confirmationUrl%': confirmationUrl}) }}
+    {% endautoescape %}
+{% endblock %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.email.message.greetings'|trans({'%name%': user.username}) }}</p>
+    <br>
+
+    {% autoescape false %}
+        <p>{{  confirmationUrl }}</p>
+    {% endautoescape %}
+
+    <br>
+    <p>{{ 'registration.email.message.salute'|trans }}</p>
+
+
+{% endblock %}
