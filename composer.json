@@ -36,7 +36,10 @@
         "friendsofsymfony/oauth-server-bundle": "^1.5",
         "phpunit/php-code-coverage": "^4.0",
         "phpunit/phpunit": "^5.4",
-        "doctrine/doctrine-migrations-bundle": "^1.0"
+        "doctrine/doctrine-migrations-bundle": "^1.0",
+        "sonata-project/admin-bundle": "^3.3",
+        "sonata-project/doctrine-orm-admin-bundle": "^3.0",
+        "sonata-project/easy-extends-bundle": "^2.1"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

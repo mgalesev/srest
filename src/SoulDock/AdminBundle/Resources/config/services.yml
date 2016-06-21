@@ -1,0 +1,11 @@
+services:
+    sd.admin.user:
+        class: SoulDock\AdminBundle\Admin\UserAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.user" }
+        arguments:
+            - ~
+            - SoulDock\UserBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]

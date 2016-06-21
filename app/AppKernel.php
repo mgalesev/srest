@@ -31,6 +31,16 @@ class AppKernel extends Kernel
             new FOS\RestBundle\FOSRestBundle(),
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
 
+            // Knp
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+
+            // Sonata
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+
             // Nelmio
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
@@ -39,6 +49,7 @@ class AppKernel extends Kernel
             new SoulDock\WebBundle\SoulDockWebBundle(),
             new SoulDock\UserBundle\SoulDockUserBundle(),
             new SoulDock\RestBundle\SoulDockRestBundle(),
+            new SoulDock\AdminBundle\SoulDockAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

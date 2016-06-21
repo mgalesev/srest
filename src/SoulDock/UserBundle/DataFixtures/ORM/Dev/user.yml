@@ -1,6 +1,14 @@
 SoulDock\UserBundle\Entity\User:
     user_1:
+        username: 'superadmin'
+        email: 'superadmin@souldock.com'
+        plainPassword: 'xxxx'
+        role: ['ROLE_SUPER_ADMIN']
+        enabled: true
+
+    user_2:
         username: 'admin'
         email: 'admin@souldock.com'
         plainPassword: 'xxxx'
+        role: ['ROLE_ADMIN']
         enabled: true

@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -149,3 +149,30 @@ hautelook_alice:
     locale: en_US
     seed: 1
     persist_once: false
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+        sonata.admin.block.search_result:
+            contexts:   [admin]
+
+
+sonata_admin:
+    title: SoulDock
+    security:
+        handler: sonata.admin.security.handler.role
+    dashboard:
+        groups:
+            settings:
+                label: group.label.settings
+                label_catalogue: SoulDockAdminBundle
+                icon: <i class="fa fa-cogs"></i>
+                items:
+            users:
+                label: group.label.user
+                label_catalogue: SoulDockAdminBundle
+                icon: <i class="fa fa-user"></i>
+                items:
+                    - sd.admin.user
