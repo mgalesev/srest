@@ -8,16 +8,31 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
-class UserAdmin extends AbstractAdmin
+/**
+ * Class SurveyAnswerAdmin
+ *
+ * @package SoulDock\AdminBundle\Admin
+ */
+class SurveyAnswerAdmin extends AbstractAdmin
 {
+    /**
+     * { @inheritdoc }
+     */
+    protected $parentAssociationMapping = 'question';
+
     /**
      * { @inheritdoc }
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        if (!in_array($this->getRoot()->getClass(), array('SoulDock\SurveyBundle\Entity\SurveyQuestion','SoulDock\SurveyBundle\Entity\Survey'))) {
+            $formMapper
+                ->add('question');
+        }
+
         $formMapper
-            ->add('username')
-            ->add('email')
+            ->add('answer')
+            ->add('position')
         ;
     }
 
@@ -27,8 +42,8 @@ class UserAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('username')
-            ->add('email')
+            ->add('question')
+            ->add('answer')
         ;
     }
 
@@ -39,8 +54,8 @@ class UserAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('id')
-            ->add('username')
-            ->add('email')
+            ->add('question')
+            ->add('answer')
         ;
     }
 
@@ -50,9 +65,8 @@ class UserAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('username')
-            ->add('email')
-            ->add('enabled')
+            ->add('question')
+            ->add('answer')
         ;
     }
 }

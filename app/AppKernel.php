@@ -44,12 +44,13 @@ class AppKernel extends Kernel
             // Nelmio
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
 
-            // Srest
+            // SoulDock
             new SoulDock\PaperBundle\SoulDockPaperBundle(),
             new SoulDock\WebBundle\SoulDockWebBundle(),
             new SoulDock\UserBundle\SoulDockUserBundle(),
             new SoulDock\RestBundle\SoulDockRestBundle(),
             new SoulDock\AdminBundle\SoulDockAdminBundle(),
+            new SoulDock\SurveyBundle\SoulDockSurveyBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

@@ -1,6 +1,10 @@
 group:
     label:
         user: User
+        survey: Survey
 
 label:
     user: User
+    survey: Survey
+    survey_question: Question
+    survey_answer: Answer

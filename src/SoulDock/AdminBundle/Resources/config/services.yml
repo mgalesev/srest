@@ -1,11 +1,46 @@
 services:
-    sd.admin.user:
+    sd.user.admin.user:
         class: SoulDock\AdminBundle\Admin\UserAdmin
         tags:
             - { name: sonata.admin, manager_type: orm, label: "label.user" }
         arguments:
             - ~
             - SoulDock\UserBundle\Entity\User
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]
+
+    sd.survey.admin.survey:
+        class: SoulDock\AdminBundle\Admin\SurveyAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.survey" }
+        arguments:
+            - ~
+            - SoulDock\SurveyBundle\Entity\Survey
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]
+            - [ addChild, ["@sd.survey.admin.question"]]
+
+    sd.survey.admin.question:
+        class: SoulDock\AdminBundle\Admin\SurveyQuestionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.survey_question" }
+        arguments:
+            - ~
+            - SoulDock\SurveyBundle\Entity\SurveyQuestion
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]
+            - [ addChild, ["@sd.survey.admin.answer"]]
+
+    sd.survey.admin.answer:
+        class: SoulDock\AdminBundle\Admin\SurveyAnswerAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.survey_answer" }
+        arguments:
+            - ~
+            - SoulDock\SurveyBundle\Entity\SurveyAnswer
             - ~
         calls:
             - [ setTranslationDomain, [SoulDockAdminBundle]]

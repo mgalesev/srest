@@ -1,0 +1,3 @@
+soul_dock_survey_homepage:
+    path:     /
+    defaults: { _controller: SoulDockSurveyBundle:Default:index }

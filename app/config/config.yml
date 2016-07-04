@@ -158,7 +158,6 @@ sonata_block:
         sonata.admin.block.search_result:
             contexts:   [admin]
 
-
 sonata_admin:
     title: SoulDock
     security:
@@ -170,9 +169,17 @@ sonata_admin:
                 label_catalogue: SoulDockAdminBundle
                 icon: <i class="fa fa-cogs"></i>
                 items:
-            users:
+            user:
                 label: group.label.user
                 label_catalogue: SoulDockAdminBundle
                 icon: <i class="fa fa-user"></i>
                 items:
-                    - sd.admin.user
+                    - sd.user.admin.user
+            survey:
+                label: group.label.survey
+                label_catalogue: SoulDockAdminBundle
+                icon: <i class="fa fa-list-ul"></i>
+                items:
+                    - sd.survey.admin.survey
+                    - sd.survey.admin.question
+                    - sd.survey.admin.answer
