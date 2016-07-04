@@ -36,7 +36,7 @@ class SurveyQuestionAdmin extends AbstractAdmin
             ->add('weight')
         ;
 
-        if ($subject->getId() != null) {
+        if ($subject && $subject->getId() != null) {
             $formMapper->add('answers', 'sonata_type_collection', [], [
                 'edit' => 'inline',
                 'inline' => 'table',
