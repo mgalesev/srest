@@ -21,7 +21,7 @@ security:
             http_basic: true
 
         sd_auth:
-            pattern:    ^/api/v1/users
+            pattern:    ^/api/v1/registers
             security:  false
             methods: [POST]
             anonymous: true
@@ -41,5 +41,5 @@ security:
 
     access_control:
         - { path: ^/api/v1, roles: [ IS_AUTHENTICATED_FULLY ] }
-        - { path: ^/api/v1/users, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
+        - { path: ^/api/v1/registers, roles: [ IS_AUTHENTICATED_ANONYMOUSLY ] }
         - { path: ^/admin/, role: ROLE_ADMIN }

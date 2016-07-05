@@ -18,6 +18,8 @@ class UserAdmin extends AbstractAdmin
         $formMapper
             ->add('username')
             ->add('email')
+            ->add('enabled')
+            ->add('locked')
         ;
     }
 
@@ -29,6 +31,8 @@ class UserAdmin extends AbstractAdmin
         $datagridMapper
             ->add('username')
             ->add('email')
+            ->add('enabled')
+            ->add('locked')
         ;
     }
 
@@ -41,6 +45,8 @@ class UserAdmin extends AbstractAdmin
             ->addIdentifier('id')
             ->add('username')
             ->add('email')
+            ->add('enabled')
+            ->add('locked')
         ;
     }
 
@@ -53,6 +59,7 @@ class UserAdmin extends AbstractAdmin
             ->add('username')
             ->add('email')
             ->add('enabled')
+            ->add('locked')
         ;
     }
 }

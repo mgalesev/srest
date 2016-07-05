@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use SoulDock\UserBundle\Form\UserType;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use FOS\RestBundle\View\View;
+use SoulDock\UserBundle\Form\Type\ChangePasswordFormType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
@@ -38,18 +39,19 @@ class UserRestController extends BaseRestController
         UserType::class;
     }
 
+
     /**
-     * Create new User action.
+     * Change password action.
      *
      * @ApiDoc(
      *  resource=true,
-     *  description="Register a new User",
-     *  input = "SoulDock\UserBundle\Form\UserType",
+     *  description="Confirm a new User",
+     *  input = "SoulDock\UserBundle\Form\Type\ChangePasswordFormType",
      *  output = "SoulDock\UserBundle\Entity\User",
      *  section="User",
      *  statusCodes={
-     *         201="Returned when a new User has been successfully created",
-     *         400="Returned when the posted data is invalid"
+     *         200="Returned when a new User has been successfully confirmed",
+     *         404="Returned when user with posted token is not found"
      *     }
      * )
      *
@@ -57,43 +59,53 @@ class UserRestController extends BaseRestController
      *
      * @return View
      */
-    public function postUserAction(Request $request)
+    public function patchUserChangepasswordAction(Request $request)
     {
+        $user = $this->getUser();
+
         $dispatcher = $this->get('event_dispatcher');
 
-        $user = $this->getEntityManager()->createUser();
-        $user->setEnabled(true);
-
         $event = new GetResponseUserEvent($user, $request);
-        $dispatcher->dispatch(FOSUserEvents::REGISTRATION_INITIALIZE, $event);
+        $dispatcher->dispatch(
+            FOSUserEvents::CHANGE_PASSWORD_INITIALIZE,
+            $event
+        );
 
         if (null !== $event->getResponse()) {
             return $event->getResponse();
         }
 
-        $form = $this->createForm(UserType::class, $user, [
-            'method' => Request::METHOD_POST,
+        $form = $this->createForm(ChangePasswordFormType::class, $user, [
+            'method' => Request::METHOD_PATCH,
+            'csrf_protection' => false,
         ]);
 
         $form->handleRequest($request);
 
         if ($form->isValid()) {
             $event = new FormEvent($form, $request);
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_SUCCESS, $event);
+            $dispatcher->dispatch(
+                FOSUserEvents::CHANGE_PASSWORD_SUCCESS,
+                $event
+            );
 
             $this->getEntityManager()->updateUser($user);
 
             if (null === $response = $event->getResponse()) {
-                $url = $this->generateUrl('fos_user_registration_confirmed');
+                $url = $this->generateUrl('fos_user_profile_show');
                 $response = new RedirectResponse($url);
             }
 
-            $dispatcher->dispatch(FOSUserEvents::REGISTRATION_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
+            $dispatcher->dispatch(
+                FOSUserEvents::CHANGE_PASSWORD_COMPLETED,
+                new FilterUserResponseEvent($user, $request, $response)
+            );
 
-            return $this->created($user);
+            return $this->ok($user);
         }
         else {
             return $this->bad($form);
         }
     }
+
 }
