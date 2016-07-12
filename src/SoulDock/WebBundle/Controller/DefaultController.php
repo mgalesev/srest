@@ -11,7 +11,9 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $form = $this->createForm(UserType::class);
-        return $this->render('SoulDockWebBundle:Default:index.html.twig');
+        $form = $this->createForm('tag_area');
+        return $this->render('SoulDockWebBundle:Default:index.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 }

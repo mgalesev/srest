@@ -1,0 +1,7 @@
+{% extends admin.getTemplate('base_list_field') %}
+
+{% block field %}
+    {% for key, val in value %}
+        {{ val }}{% if not loop.last %}, {% endif %}
+    {% endfor %}
+{% endblock %}

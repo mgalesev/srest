@@ -44,3 +44,25 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [SoulDockAdminBundle]]
+
+    sd.tag.admin.tag:
+        class: SoulDock\AdminBundle\Admin\TagAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.tag_tag" }
+        arguments:
+            - ~
+            - SoulDock\TagBundle\Entity\Tag
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]
+
+    sd.paper.admin.paper:
+        class: SoulDock\AdminBundle\Admin\PaperAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.paper.paper" }
+        arguments:
+            - ~
+            - SoulDock\PaperBundle\Entity\Paper
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]

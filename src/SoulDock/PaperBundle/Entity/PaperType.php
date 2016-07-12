@@ -140,5 +140,15 @@ class PaperType
     {
         return $this->papers;
     }
+
+    /**
+     * To string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
 

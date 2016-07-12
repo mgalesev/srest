@@ -1,0 +1,42 @@
+services:
+    sd.tag.manager:
+        class: SoulDock\TagBundle\Service\TagManager
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    sd.tag.listener:
+        class: SoulDock\TagBundle\EventListener\TagListener
+        arguments: ["@service_container"]
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+
+    sd.tag.form.type.tag_choice:
+        class: SoulDock\TagBundle\Form\Type\TagChoiceType
+        arguments: ["@sd.tag.manager"]
+        tags:
+            - { name: form.type, alias: tag_choice }
+
+    sd.tag.form.type.tag_autocomplete:
+        class: SoulDock\TagBundle\Form\Type\TagAutocompleteType
+        arguments: ["@sd.tag.manager", "@sonata.admin.manager.orm"]
+        tags:
+            - { name: form.type, alias: tag_autocomplete }
+
+    sd.tag.form.type.tag_area:
+        class: SoulDock\TagBundle\Form\Type\TagAreaType
+        arguments: ["@sd.tag.form.transformer.text_to_tag"]
+        tags:
+            - { name: form.type, alias: tag_area }
+
+    sd.tag.form.type.sonate_tag_collection:
+        class: SoulDock\TagBundle\Form\Type\SonataTagCollectionType
+        arguments: ["@sd.tag.form.transformer.collection_to_tag"]
+        tags:
+            - { name: form.type, alias: sonate_tag_collection }
+
+    sd.tag.form.transformer.text_to_tag:
+        class: SoulDock\TagBundle\Form\DataTransformer\TextToTagTransformer
+        arguments: ["@sd.tag.manager"]
+
+    sd.tag.form.transformer.collection_to_tag:
+        class: SoulDock\TagBundle\Form\DataTransformer\CollectionToTagTransformer
+        arguments: ["@sd.tag.manager"]

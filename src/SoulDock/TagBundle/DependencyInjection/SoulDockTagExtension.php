@@ -1,6 +1,6 @@
 <?php
 
-namespace SoulDock\AdminBundle\DependencyInjection;
+namespace SoulDock\TagBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -12,28 +12,13 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
-class SoulDockAdminExtension extends Extension
+class SoulDockTagExtension extends Extension
 {
     /**
      * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
-        $bundles = $container->getParameter('kernel.bundles');
-        if (isset($bundles['SonataIntlBundle'])) {
-            $defaultConfig = [
-                'templates' => [
-                    'types' => [
-                        'list' => [
-                            'tags' => 'SoulDockAdminBundle:CRUD:list_tags.html.twig',
-                        ]
-                    ]
-                ]
-            ];
-
-            array_unshift($configs, $defaultConfig);
-        }
-
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 

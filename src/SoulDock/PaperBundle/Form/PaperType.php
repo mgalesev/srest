@@ -2,10 +2,16 @@
 
 namespace SoulDock\PaperBundle\Form;
 
+use SoulDock\TagBundle\Form\Type\TagAreaType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+/**
+ * Class PaperType
+ *
+ * @package SoulDock\PaperBundle\Form
+ */
 class PaperType extends AbstractType
 {
     /**
@@ -17,6 +23,7 @@ class PaperType extends AbstractType
             ->add('title')
             ->add('body')
             ->add('type')
+            ->add('tags', TagAreaType::class)
         ;
     }
 

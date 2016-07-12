@@ -51,6 +51,7 @@ class AppKernel extends Kernel
             new SoulDock\RestBundle\SoulDockRestBundle(),
             new SoulDock\AdminBundle\SoulDockAdminBundle(),
             new SoulDock\SurveyBundle\SoulDockSurveyBundle(),
+            new SoulDock\TagBundle\SoulDockTagBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

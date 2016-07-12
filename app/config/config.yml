@@ -183,3 +183,10 @@ sonata_admin:
                     - sd.survey.admin.survey
                     - sd.survey.admin.question
                     - sd.survey.admin.answer
+            content:
+                label: group.label.content
+                label_catalogue: SoulDockAdminBundle
+                icon: <i class="fa fa-folder"></i>
+                items:
+                    - sd.tag.admin.tag
+                    - sd.paper.admin.paper

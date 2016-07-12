@@ -1,0 +1,3 @@
+soul_dock_tag_homepage:
+    path:     /
+    defaults: { _controller: SoulDockTagBundle:Default:index }

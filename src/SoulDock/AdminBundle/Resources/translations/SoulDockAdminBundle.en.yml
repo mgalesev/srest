@@ -2,9 +2,13 @@ group:
     label:
         user: User
         survey: Survey
+        content: Content
 
 label:
     user: User
     survey: Survey
     survey_question: Question
     survey_answer: Answer
+    tag_tag: Tag
+    paper:
+        paper: Paper
