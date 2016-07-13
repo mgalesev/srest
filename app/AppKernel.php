@@ -43,6 +43,7 @@ class AppKernel extends Kernel
 
             // Nelmio
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+            new Nelmio\CorsBundle\NelmioCorsBundle(),
 
             // SoulDock
             new SoulDock\PaperBundle\SoulDockPaperBundle(),
