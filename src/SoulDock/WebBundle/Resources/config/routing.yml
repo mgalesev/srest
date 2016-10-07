@@ -1,3 +1,7 @@
 soul_dock_web_homepage:
     path:     /
     defaults: { _controller: SoulDockWebBundle:Default:index }
+
+soul_dock_web_paper:
+    path:     /paper/{id}/{language}
+    defaults: { _controller: SoulDockWebBundle:Default:loadPaper }

@@ -40,7 +40,8 @@
         "sonata-project/admin-bundle": "^3.3",
         "sonata-project/doctrine-orm-admin-bundle": "^3.0",
         "sonata-project/easy-extends-bundle": "^2.1",
-        "nelmio/cors-bundle": "^1.4"
+        "nelmio/cors-bundle": "^1.4",
+        "sonata-project/translation-bundle": "3.x-dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

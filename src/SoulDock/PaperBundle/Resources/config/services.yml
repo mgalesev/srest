@@ -4,6 +4,6 @@ services:
         arguments: ["@doctrine.orm.entity_manager", 'SoulDockPaperBundle:PaperType']
 
     paper.manager:
-        class: SoulDock\PaperBundle\Service\SoulDockBaseEntityManager
+        class: SoulDock\PaperBundle\Service\PaperManager
         arguments: ["@doctrine.orm.entity_manager", 'SoulDockPaperBundle:Paper']
 

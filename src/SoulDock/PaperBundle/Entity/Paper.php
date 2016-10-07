@@ -7,21 +7,28 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Doctrine\Common\Collections\ArrayCollection;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 
 /**
  * Paper
  *
  * @ORM\Table(name="paper")
  * @ORM\Entity(repositoryClass="SoulDock\PaperBundle\Repository\PaperRepository")
+ * @Gedmo\TranslationEntity(class="SoulDock\PaperBundle\Entity\Translation\PaperTranslation")
  *
  * @ExclusionPolicy("all")
  */
-class Paper
+class Paper implements TranslatableInterface
 {
     /**
      * Timestabpable trait
      */
     use TimestampableEntity;
+
+    use PersonalTranslatableTrait;
 
     /**
      * @var int
@@ -39,6 +46,7 @@ class Paper
      *
      * @Assert\NotBlank()
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="title", type="string", length=255)
      *
      * @Expose
@@ -48,6 +56,7 @@ class Paper
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="body", type="text", nullable=true)
      *
      * @Expose
@@ -65,6 +74,17 @@ class Paper
      * @Expose
      */
     private $type;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="SoulDock\PaperBundle\Entity\Translation\PaperTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
 
     /**
      * Get id

@@ -66,3 +66,14 @@ services:
             - ~
         calls:
             - [ setTranslationDomain, [SoulDockAdminBundle]]
+
+    sd.paper.admin.paper_type:
+        class: SoulDock\AdminBundle\Admin\PaperTypeAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: "label.paper.paper_type" }
+        arguments:
+            - ~
+            - SoulDock\PaperBundle\Entity\PaperType
+            - ~
+        calls:
+            - [ setTranslationDomain, [SoulDockAdminBundle]]

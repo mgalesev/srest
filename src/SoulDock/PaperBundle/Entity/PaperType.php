@@ -9,23 +9,29 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use JMS\Serializer\Annotation\Expose;
 use JMS\Serializer\Annotation\ExclusionPolicy;
+use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\TranslationBundle\Model\Gedmo\TranslatableInterface;
+use Sonata\TranslationBundle\Traits\Gedmo\PersonalTranslatableTrait;
 
 /**
  * PaperType
  *
  * @ORM\Table(name="paper_type")
  * @ORM\Entity(repositoryClass="SoulDock\PaperBundle\Repository\PaperTypeRepository")
+ * @Gedmo\TranslationEntity(class="SoulDock\PaperBundle\Entity\Translation\PaperTypeTranslation")
  *
  * @UniqueEntity("name")
  *
  * @ExclusionPolicy("all")
  */
-class PaperType
+class PaperType implements TranslatableInterface
 {
     /**
      * Timestabpable trait
      */
     use TimestampableEntity;
+
+    use PersonalTranslatableTrait;
 
     /**
      * @var int
@@ -43,6 +49,7 @@ class PaperType
      *
      * @Assert\NotBlank()
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="name", type="string", length=255, unique=true)
      *
      * @Expose
@@ -52,6 +59,7 @@ class PaperType
     /**
      * @var string
      *
+     * @Gedmo\Translatable
      * @ORM\Column(name="description", type="text", nullable=true)
      *
      * @Expose
@@ -64,6 +72,17 @@ class PaperType
      * @ORM\OneToMany(targetEntity="SoulDock\PaperBundle\Entity\Paper", mappedBy="type")
      */
     private $papers;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(
+     *     targetEntity="SoulDock\PaperBundle\Entity\Translation\PaperTypeTranslation",
+     *     mappedBy="object",
+     *     cascade={"persist", "remove"}
+     * )
+     */
+    protected $translations;
 
     /**
      * PaperType constructor.

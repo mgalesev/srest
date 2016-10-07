@@ -10,4 +10,38 @@ namespace SoulDock\PaperBundle\Repository;
  */
 class PaperTypeRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findTranslated($id, $language) {
+        $qb = $this->createQueryBuilder('pt');
+
+        $qb->where('pt.id = :id');
+        $qb->setParameter('id', $id);
+
+        $query = $qb->getQuery();
+
+        $query->setHint(
+            \Doctrine\ORM\Query::HINT_CUSTOM_OUTPUT_WALKER,
+            'Gedmo\\Translatable\\Query\\TreeWalker\\TranslationWalker'
+        );
+
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_TRANSLATABLE_LOCALE,
+            $language
+        );
+
+        $query->setHint(
+            \Gedmo\Translatable\TranslatableListener::HINT_FALLBACK,
+            1
+        );
+
+        $result = $query->getResult();
+
+        if ($result) {
+            $paperType = $result[0];
+        }
+        else {
+            $paperType = null;
+        }
+
+        return $paperType;
+    }
 }

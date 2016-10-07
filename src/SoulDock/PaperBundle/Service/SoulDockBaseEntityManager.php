@@ -17,14 +17,14 @@ class SoulDockBaseEntityManager implements SoulDockEntityManagerInterface
      *
      * @var EntityManager
      */
-    private $em;
+    protected $em;
 
     /**
      * Name of the class.
      *
      * @var string
      */
-    private $class;
+    protected $class;
 
     /**
      * SoulDockBaseEntityManager constructor.

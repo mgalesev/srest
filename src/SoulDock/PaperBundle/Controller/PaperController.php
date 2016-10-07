@@ -10,6 +10,7 @@ use SoulDock\PaperBundle\Form\PaperType;
 use Nelmio\ApiDocBundle\Annotation\ApiDoc;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\Controller\Annotations\QueryParam;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class PaperController
@@ -56,7 +57,8 @@ class PaperController extends BaseRestController
      *  output = "SoulDock\PaperBundle\Entity\Paper",
      *  section="Paper",
      *   requirements={
-     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="the id of the Paper to return"}
+     *      {"name"="id", "dataType"="integer", "requirement"="\d+", "description"="the id of the Paper to return"},
+     *      {"name"="language", "dataType"="string", "requirement"="en|fr|es|pt", "description"="Language"}
      *   },
      *  statusCodes={
      *         200="Returned when successful",
@@ -64,13 +66,22 @@ class PaperController extends BaseRestController
      *     }
      * )
      *
-     * @param $id
+     * @QueryParam(name="language", requirements="en|fr|es|pt", default="en", description="Language")
      *
      * @return View
      */
-    public function getPaperAction($id)
+    public function getPaperAction(Request $request, $id, $language)
     {
-        return $this->getAction($id);
+        $paper = $this->getEntityManager()->findPaperTranslation($id, $language);
+
+        if ($paper) {
+            $view = $this->cachedResponse($paper, $request);
+        }
+        else {
+            $view = $this->notFound();
+        }
+
+        return $view;
     }
 
     /**

@@ -9,36 +9,23 @@
 namespace SoulDock\PaperBundle\Service;
 
 use SoulDock\PaperBundle\Entity\Paper;
-use Doctrine\ORM\EntityManager;
 use SoulDock\PaperBundle\Entity\PaperType;
 
-class PaperManager
+class PaperManager extends SoulDockBaseEntityManager
 {
-    /**
-     * @var EntityManager
-     */
-    private $em;
-
-    /**
-     * PaperManager constructor.
-     *
-     * @param EntityManager $entityManager
-     */
-    public function __construct(EntityManager $entityManager)
+    public function findPaperTranslation($id, $language)
     {
-        $this->em = $entityManager;
-    }
-
-    /**
-     * @param $id
-     *
-     * @return Paper
-     */
-    public function findPaper($id)
-    {
-        return $this->em
+        $paper = $this->em
             ->getRepository('SoulDockPaperBundle:Paper')
-            ->find($id);
+            ->findTranslated($id, $language);
+
+        if ($paper) {
+            $this->em
+                ->getRepository('SoulDockPaperBundle:PaperType')
+                ->findTranslated($paper->getType()->getId(), $language);
+        }
+
+        return $paper;
     }
 
     /**
@@ -85,16 +72,4 @@ class PaperManager
         return $paperType;
     }
 
-    /**
-     * @param object $paperType
-     *
-     * @return object
-     */
-    public function save($entity)
-    {
-        $this->em->persist($entity);
-        $this->em->flush();
-
-        return $entity;
-    }
 }

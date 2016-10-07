@@ -30,7 +30,8 @@ security:
             pattern:    ^/api/v1
             fos_oauth:  true
             stateless:  true
-            anonymous:  false
+            anonymous:  true
+            security:  false
 
         main:
             pattern: ^/

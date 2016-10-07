@@ -40,6 +40,7 @@ class AppKernel extends Kernel
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            new Sonata\TranslationBundle\SonataTranslationBundle(),
 
             // Nelmio
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),

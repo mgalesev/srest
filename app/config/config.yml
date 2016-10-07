@@ -47,21 +47,29 @@ doctrine:
         user:     "%database_user%"
         password: "%database_password%"
         charset:  UTF8
-        # if using pdo_sqlite as your database driver:
-        #   1. add the path in parameters.yml
-        #     e.g. database_path: "%kernel.root_dir%/data/data.db3"
-        #   2. Uncomment database_path in parameters.yml.dist
-        #   3. Uncomment next line:
-        #     path:     "%database_path%"
-
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
-        filters:
-            softdeleteable:
-                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
-                enabled: true
+        entity_managers:
+            default:
+                naming_strategy: doctrine.orm.naming_strategy.underscore
+                auto_mapping: true
+                mappings:
+                    gedmo_translatable:
+                        type: annotation
+                        prefix: Gedmo\Translatable\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                        alias: GedmoTranslatable # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+                    gedmo_translator:
+                        type: annotation
+                        prefix: Gedmo\Translator\Entity
+                        dir: "%kernel.root_dir%/../vendor/gedmo/doctrine-extensions/lib/Gedmo/Translator/Entity"
+                        alias: GedmoTranslator # (optional) it will default to the name set for the mapping
+                        is_bundle: false
+                filters:
+                    softdeleteable:
+                        class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                        enabled: true
 
 stof_doctrine_extensions:
     orm:
@@ -71,6 +79,7 @@ stof_doctrine_extensions:
             blameable: true
             softdeleteable: true
             sortable: true
+            translatable: true
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -119,6 +128,7 @@ fos_rest:
     format_listener:
         enabled: true
         rules:
+            - { path: '^/api/v1/', priorities: ['json'], fallback_format: json, prefer_extension: true}
             - { path: '^/', priorities: ['json', 'xml', 'html'], fallback_format: 'html' }
     serializer:
         serialize_null: true
@@ -162,6 +172,8 @@ sonata_admin:
     title: SoulDock
     security:
         handler: sonata.admin.security.handler.role
+    templates:
+        layout: admin/layout.html.twig
     dashboard:
         groups:
             settings:
@@ -189,7 +201,14 @@ sonata_admin:
                 icon: <i class="fa fa-folder"></i>
                 items:
                     - sd.tag.admin.tag
+                    - sd.paper.admin.paper_type
                     - sd.paper.admin.paper
+
+sonata_translation:
+    locales: [en, fr, es, pt]
+    default_locale: en
+    gedmo:
+        enabled: true
 
 nelmio_cors:
     paths:

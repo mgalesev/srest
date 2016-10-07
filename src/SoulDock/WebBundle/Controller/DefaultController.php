@@ -16,4 +16,15 @@ class DefaultController extends Controller
             'form' => $form->createView(),
         ]);
     }
+
+    public function loadPaperAction($id, $language)
+    {
+        $em = $this->get('doctrine.orm.entity_manager');
+
+        $paper = $em->getRepository('SoulDockPaperBundle:Paper')->findTranslated($id, $language);
+
+        return $this->render('SoulDockWebBundle:Default:paper.html.twig', [
+            'paper' => $paper,
+        ]);
+    }
 }

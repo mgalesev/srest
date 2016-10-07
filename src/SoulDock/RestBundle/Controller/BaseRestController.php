@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\View\View;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
@@ -264,5 +265,49 @@ abstract class BaseRestController extends FOSRestController
         else {
             return $this->bad($form);
         }
+    }
+
+    /**
+     * Get cached response for given object.
+     *
+     * @param object  $object
+     * @param Request $request
+     *
+     * @return Response
+     */
+    protected function cachedResponse($object, $request)
+    {
+        $response = new Response();
+        $response->setEtag($this->computeETag($object));
+        $response->setPublic();
+        $response->setLastModified($object->getUpdatedAt());
+
+        if ($response->isNotModified($request)) {
+            return $response;
+        }
+
+        $view = $this->ok($object);
+        $view->setResponse($response);
+
+        $handler = $this->get('fos_rest.view_handler');
+        $response = $handler->handle($view);
+
+        return $response;
+    }
+
+    /**
+     * Get eTag for entity
+     *
+     * @param object $object
+     *
+     * @return string
+     */
+    protected function computeETag($object)
+    {
+        $name = strtolower(substr(strrchr(get_class($object), '\\'), 1));
+
+        $eTag = $name . '_' . $object->getId();
+
+        return $eTag;
     }
 }
